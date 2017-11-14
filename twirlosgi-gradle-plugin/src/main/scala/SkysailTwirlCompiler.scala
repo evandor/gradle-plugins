@@ -32,7 +32,7 @@ class SkysailTwirlCompiler(dir: File) {
   var additionalImports: scala.Seq[_root_.scala.Predef.String] = List(
     "play.twirl.api.Html",
     "html.main",
-    "io.skysail.core.model.RepresentationModel"
+    "io.skysail.server.RepresentationModel"
   )
 
   var constructorAnnotations: scala.Seq[_root_.scala.Predef.String] = Nil

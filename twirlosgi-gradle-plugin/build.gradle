@@ -1,5 +1,9 @@
-version "0.1.0"
+plugins {
+    id "com.gradle.plugin-publish" version "0.9.9"
+}
 
+
+apply plugin: "com.gradle.plugin-publish"
 apply plugin: 'scala'
 apply plugin: 'groovy'
 apply plugin: 'maven-publish'
@@ -17,11 +21,30 @@ dependencies {
     compile 'com.typesafe.play:twirl-compiler_2.11:1.3.12'
 }
 
+version "0.1.2"
+group = "io.skysail.gradle"
+
+// The configuration example below shows the minimum required properties
+// configured to publish your plugin to the plugin portal
+pluginBundle {
+    website = 'http://www.gradle.org/'
+    vcsUrl = 'https://github.com/gradle/gradle'
+    description = 'twirl compiler gradle bundle for skysail'
+    tags = ['twirl', 'osgi']
+
+    plugins {
+        greetingsPlugin {
+            id = 'io.skysail.twirl.osgi'
+            displayName = 'twirl compiler gradle bundle for skysail'
+        }
+    }
+}
+
 task sourceJar(type: Jar) {
     from sourceSets.main.allJava
 }
 
-publishing {
+/*publishing {
     publications {
         mavenJava(MavenPublication) {
             groupId 'io.skysail.gradle'
@@ -36,7 +59,7 @@ publishing {
     repositories {
         mavenLocal()
     }
-}
+}*/
 
 sourceSets {
     main {

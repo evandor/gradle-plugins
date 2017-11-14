@@ -10,7 +10,7 @@ class TwirlPlugin extends Plugin[Project] {
     println (" > hier")
     println (" > " + project.getProjectDir)
     //println (" > " + greeting)
-    println (" > compiling twirl sources...")
+    println (" >>> compiling twirl sources...")
     val compiler = new io.skysail.gradle.plugin.twirlosgi.SkysailTwirlCompiler(project.getProjectDir)
     println (" > " + compiler)
     compiler.compileDir()

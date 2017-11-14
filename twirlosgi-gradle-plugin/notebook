@@ -1,0 +1,16 @@
+gradle plugin repo:
+
+https://plugins.gradle.org/plugin/io.skysail.twirl.osgi (login: github)
+
+writing custom plugin:
+
+https://docs.gradle.org/current/userguide/custom_plugins.html
+
+publishing:
+
+https://plugins.gradle.org/docs/submit
+https://plugins.gradle.org/u/evandor?tab=publishing
+https://plugins.gradle.org/docs/publish-plugin
+
+./gradlew login
+./gradlew publishPlugins
