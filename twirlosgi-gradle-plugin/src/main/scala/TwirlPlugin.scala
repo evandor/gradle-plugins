@@ -1,19 +1,19 @@
 package io.skysail.gradle.plugin.twirlosgi
 
-import org.gradle.api.Plugin
-import org.gradle.api.Project
+import org.gradle.api.{Plugin, Project}
+import org.slf4j.LoggerFactory
+
 
 class TwirlPlugin extends Plugin[Project] {
+
+  val logger = LoggerFactory.getLogger("gradlebuild")
+
   override def apply(project: Project) = {
-    //project.task("hello")
-    //project.task("hello", classOf[GreetingTask])
-    println (" > hier")
-    println (" > " + project.getProjectDir)
-    //println (" > " + greeting)
-    println (" >>> compiling twirl sources...")
+    logger.info(" > " + project.getProjectDir)
+    println(" >>> compiling twirl sources...")
     val compiler = new io.skysail.gradle.plugin.twirlosgi.SkysailTwirlCompiler(project.getProjectDir)
-    println (" > " + compiler)
+    println(" > " + compiler)
     compiler.compileDir()
-    println (" > compiled")
+    logger.info("compiled")
   }
 }
