@@ -43,7 +43,12 @@ class SkysailTwirlCompiler(dir: File) {
   var constructorAnnotations: scala.Seq[_root_.scala.Predef.String] = Nil
 
   def compile(view: File): Unit = {
-    System.out.println("Generating scala file " + view.getAbsolutePath)
-    TwirlCompiler.compile(view, root, outputFolder, "play.twirl.api.HtmlFormat", additionalImports, constructorAnnotations, Codec(scala.util.Properties.sourceEncoding), false)
+    System.out.println("checking file " + view.getName)
+    if (view.getName.endsWith(".scala")) {
+      System.out.println("Ignoring scala file " + view.getAbsolutePath)
+    } else {
+      System.out.println("Generating scala file " + view.getAbsolutePath)
+      TwirlCompiler.compile(view, root, outputFolder, "play.twirl.api.HtmlFormat", additionalImports, constructorAnnotations, Codec(scala.util.Properties.sourceEncoding), false)
+    }
   }
 }
