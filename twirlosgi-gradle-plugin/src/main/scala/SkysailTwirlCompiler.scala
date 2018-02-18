@@ -12,7 +12,7 @@ class SkysailTwirlCompiler(dir: File) {
 
   val logger = LoggerFactory.getLogger("gradlebuild")
 
-  private val root = new File(dir, "./resources/templates")
+  private val root = new File(dir, "./src")
   private val outputFolder = new File(dir, "./src")
 
   logger.info(" > root: " + root.getAbsolutePath.toString)
@@ -37,15 +37,16 @@ class SkysailTwirlCompiler(dir: File) {
   var additionalImports: scala.Seq[_root_.scala.Predef.String] = List(
     "play.twirl.api.Html",
     "html.main",
+    "io.skysail.domain.ResponseEventBase",
     "io.skysail.server.RepresentationModel"
   )
 
   var constructorAnnotations: scala.Seq[_root_.scala.Predef.String] = Nil
 
   def compile(view: File): Unit = {
-    System.out.println("checking file " + view.getName)
-    if (view.getName.endsWith(".scala")) {
-      System.out.println("Ignoring scala file " + view.getAbsolutePath)
+    //System.out.println("0.1.6: checking file " + view.getName)
+    if (!view.getName.endsWith(".scala.html")) {
+      //System.out.println("Ignoring file " + view.getAbsolutePath)
     } else {
       System.out.println("Generating scala file " + view.getAbsolutePath)
       TwirlCompiler.compile(view, root, outputFolder, "play.twirl.api.HtmlFormat", additionalImports, constructorAnnotations, Codec(scala.util.Properties.sourceEncoding), false)
