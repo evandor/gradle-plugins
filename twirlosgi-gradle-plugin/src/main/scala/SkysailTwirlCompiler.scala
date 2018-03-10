@@ -19,16 +19,13 @@ class SkysailTwirlCompiler(dir: File) {
   logger.info(" > outputFolder: " + outputFolder.getAbsolutePath.toString)
 
   def main(args: Array[String]) {
-    println("Hello, world!")
     compileDir(root)
   }
 
   def compileDir(): Unit = compileDir(root)
 
   def compileDir(viewsFolder: File): Unit = {
-    //println (" > compiling " + viewsFolder)
     val possibleViews = viewsFolder.listFiles
-    //println (" > possibleViews " + possibleViews)
     for (view <- possibleViews) {
       if (view.isDirectory) compileDir(view) else compile(view)
     }
@@ -44,11 +41,7 @@ class SkysailTwirlCompiler(dir: File) {
   var constructorAnnotations: scala.Seq[_root_.scala.Predef.String] = Nil
 
   def compile(view: File): Unit = {
-    //System.out.println("0.1.6: checking file " + view.getName)
-    if (!view.getName.endsWith(".scala.html")) {
-      //System.out.println("Ignoring file " + view.getAbsolutePath)
-    } else {
-      System.out.println("Generating scala file " + view.getAbsolutePath)
+    if (view.getName.endsWith(".scala.html")) {
       TwirlCompiler.compile(view, root, outputFolder, "play.twirl.api.HtmlFormat", additionalImports, constructorAnnotations, Codec(scala.util.Properties.sourceEncoding), false)
     }
   }
